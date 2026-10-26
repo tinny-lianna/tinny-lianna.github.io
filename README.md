@@ -9,6 +9,7 @@ A responsive, single-page website for Tinny Lianna's Daycare in Bonaero Park, Ke
 - Parent review submission form
 - Moderated testimonials section for approved parent reviews
 - Moderated parent reviews and overall rating
+- Free honeypot protection on online forms
 - Registration information and an online Intent form
 - Facebook and TikTok search links for Tinny Lianna's Daycare
 - Gallery sections for meals, facilities, and school information
@@ -32,3 +33,7 @@ Online submissions use Formspree's Vanilla JavaScript Ajax integration and a typ
 ## Parent reviews
 
 The Reviews section accepts a parent or guardian's name, a one-to-five star rating, written feedback, and permission to review the submission for possible publication. Formspree's free hosted form collects submissions and sends them through its configured notification process, but the public site does not access private submissions automatically. Add approved reviews to `reviews.json`; include a `date` field when the review date should be shown. The site calculates the overall average from that public feed. Do not place account credentials in website files or client-side JavaScript.
+
+## Form protection
+
+The online Reviews and Intent forms use Formspree's free spam filtering plus hidden honeypot fields. Genuine visitors leave the trap fields empty; simple automated submissions that fill them can be rejected by Formspree. The Weekend Visit option is a downloadable PDF and WhatsApp enquiry link, not an online HTML form. These free measures reduce form spam but are not DDoS mitigation; a true DDoS attack requires provider-level protection.

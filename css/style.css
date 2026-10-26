@@ -626,6 +626,13 @@
     }
     .review-form-status[data-fs-error][data-fs-active],
     .review-form-status[data-fs-success][data-fs-active] { display: block; }
+    .form-trap {
+      position: absolute;
+      left: -10000px;
+      width: 1px;
+      height: 1px;
+      overflow: hidden;
+    }
     .review-submit { justify-self: start; }
     .visually-hidden {
       position: absolute;

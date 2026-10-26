@@ -242,6 +242,10 @@
               <input name="review_permission" type="checkbox" required>
               <span>I give Tinny Lianna's Daycare permission to review this feedback before deciding whether to publish it.</span>
             </label>
+            <label class="form-trap" aria-hidden="true">
+              Leave this field empty
+              <input name="_gotcha" tabindex="-1" autocomplete="off">
+            </label>
             <input type="hidden" name="_subject" value="New parent review">
             <button class="button button-primary review-submit" type="submit">Send review <span aria-hidden="true">→</span></button>
           </form>
@@ -395,6 +399,10 @@
             <span class="intent-field-error" data-fs-error="privacy_acknowledgement"></span>
           </label>
         </fieldset>
+        <label class="form-trap" aria-hidden="true">
+          Leave this field empty
+          <input name="_gotcha" tabindex="-1" autocomplete="off">
+        </label>
         <input type="hidden" name="_subject" value="New Intent form enquiry">
         <div class="intent-form-actions">
           <button class="button button-primary intent-submit" type="submit" data-fs-submit-btn>Submit Intent form</button>
