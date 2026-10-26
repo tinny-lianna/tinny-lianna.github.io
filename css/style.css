@@ -592,6 +592,12 @@
       font-style: normal;
       font-weight: 700;
     }
+    .testimonial-date {
+      display: block;
+      margin-top: 4px;
+      color: var(--muted);
+      font-size: .8rem;
+    }
     .review-card {
       max-width: 860px;
       margin: 0 auto;

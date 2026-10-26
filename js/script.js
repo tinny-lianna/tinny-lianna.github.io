@@ -297,6 +297,12 @@
         const cite = document.createElement("cite");
         cite.textContent = review.name;
         article.append(stars, text, cite);
+        if (review.date) {
+          const date = document.createElement("time");
+          date.className = "testimonial-date";
+          date.textContent = `Reviewed on ${review.date}`;
+          article.append(date);
+        }
         list.append(article);
       });
     };
