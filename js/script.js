@@ -288,15 +288,15 @@
       reviews.forEach((review) => {
         const article = document.createElement("article");
         article.className = "testimonial";
+        const cite = document.createElement("cite");
+        cite.textContent = review.name;
         const stars = document.createElement("div");
         stars.className = "testimonial-stars";
         stars.setAttribute("aria-label", `${review.rating} out of 5 stars`);
         stars.textContent = `${"★".repeat(review.rating)}${"☆".repeat(5 - review.rating)}`;
         const text = document.createElement("p");
         text.textContent = review.text;
-        const cite = document.createElement("cite");
-        cite.textContent = review.name;
-        article.append(stars, text, cite);
+        article.append(cite, stars, text);
         if (review.date) {
           const date = document.createElement("time");
           date.className = "testimonial-date";
