@@ -23,6 +23,7 @@
         <a href="#day">A day with us</a>
         <a href="#weekend-visit">Weekend Visit</a>
         <a href="#gallery">Gallery</a>
+        <a href="#reviews">Reviews</a>
         <a href="#registration">Registrations</a>
         <a href="#contact">Find us</a>
         <a class="nav-cta" href="https://wa.me/27684238182?text=Hello%20Tinny%20Lianna%27s%20Daycare%2C%20I%27d%20love%20to%20find%20out%20more." target="_blank" rel="noopener noreferrer">Chat with us <span aria-hidden="true">↗</span></a>
@@ -179,6 +180,67 @@
         </div>
         <nav class="gallery-menu" id="gallery-menu" aria-label="Photo gallery categories"></nav>
         <div class="gallery-collections" id="gallery-collections"></div>
+      </div>
+    </section>
+
+    <section class="section reviews" id="reviews">
+      <div class="wrap">
+        <div class="section-heading">
+          <div class="eyebrow"><span aria-hidden="true">♥</span> Families' voices</div>
+          <h2>Hear from our families.</h2>
+          <p>Read feedback from parents and guardians, or share your own experience with Tinny Lianna's Daycare.</p>
+        </div>
+        <div class="testimonials" aria-labelledby="testimonials-title">
+          <div class="testimonials-heading">
+            <div>
+              <div class="eyebrow"><span aria-hidden="true">★</span> Approved reviews</div>
+              <h3 id="testimonials-title">Loved by little learners and their families.</h3>
+            </div>
+            <p class="testimonials-note">Reviews are checked and approved before they are published here.</p>
+          </div>
+          <div class="testimonial-list">
+            <p class="testimonial-empty">Our first approved family reviews will appear here soon. Thank you for helping us grow.</p>
+          </div>
+        </div>
+        <div class="review-card">
+          <h3>Share your experience</h3>
+          <p class="review-intro">Your feedback helps other families learn more about our care. We will review your submission before publishing it.</p>
+          <form class="review-form" id="review-form" action="https://formspree.io/f/xeaaaewv" method="POST" target="_self">
+            <p class="review-form-status" data-fs-error role="alert" aria-live="assertive"></p>
+            <p class="review-form-status review-form-status--success" data-fs-success role="status" aria-live="polite" tabindex="-1">Thank you for sharing your review with us.</p>
+            <div class="intent-form-grid">
+              <label class="intent-field">
+                Parent or guardian's name
+                <input name="parent_name" autocomplete="name" required>
+              </label>
+              <label class="intent-field">
+                Rating
+                <span class="star-rating" role="radiogroup" aria-label="Rating from 1 to 5 stars">
+                  <input id="review-rating-5" name="rating" type="radio" value="5" required>
+                  <label for="review-rating-5" title="5 stars">★<span class="visually-hidden">5 stars</span></label>
+                  <input id="review-rating-4" name="rating" type="radio" value="4">
+                  <label for="review-rating-4" title="4 stars">★<span class="visually-hidden">4 stars</span></label>
+                  <input id="review-rating-3" name="rating" type="radio" value="3">
+                  <label for="review-rating-3" title="3 stars">★<span class="visually-hidden">3 stars</span></label>
+                  <input id="review-rating-2" name="rating" type="radio" value="2">
+                  <label for="review-rating-2" title="2 stars">★<span class="visually-hidden">2 stars</span></label>
+                  <input id="review-rating-1" name="rating" type="radio" value="1">
+                  <label for="review-rating-1" title="1 star">★<span class="visually-hidden">1 star</span></label>
+                </span>
+              </label>
+              <label class="intent-field intent-field--full">
+                Your review
+                <textarea name="review" rows="5" required placeholder="Tell us what you appreciate about your child's experience."></textarea>
+              </label>
+            </div>
+            <label class="intent-consent">
+              <input name="review_permission" type="checkbox" required>
+              <span>I give Tinny Lianna's Daycare permission to review this feedback before deciding whether to publish it.</span>
+            </label>
+            <input type="hidden" name="_subject" value="New parent review">
+            <button class="button button-primary review-submit" type="submit">Send review <span aria-hidden="true">→</span></button>
+          </form>
+        </div>
       </div>
     </section>
 
@@ -348,6 +410,14 @@
       onSuccess: (context) => {
         context.form.reset();
         document.querySelector("#intent-modal").scrollTo({ top: 0, behavior: "smooth" });
+        context.form.querySelector("[data-fs-success]").focus({ preventScroll: true });
+      }
+    });
+    window.formspree('initForm', {
+      formElement: '#review-form',
+      formId: 'xeaaaewv',
+      onSuccess: (context) => {
+        context.form.reset();
         context.form.querySelector("[data-fs-success]").focus({ preventScroll: true });
       }
     });
