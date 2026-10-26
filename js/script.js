@@ -270,6 +270,42 @@
       </section>
     `;
 
+    const renderReviews = (reviews) => {
+      const average = document.querySelector("#review-average");
+      const count = document.querySelector("#review-count");
+      const list = document.querySelector(".testimonial-list");
+      const empty = document.querySelector("#testimonial-empty");
+      if (!average || !count || !list || !empty) return;
+
+      if (!reviews.length) return;
+
+      const total = reviews.reduce((sum, review) => sum + review.rating, 0);
+      const rating = (total / reviews.length).toFixed(1);
+      average.textContent = `${rating} out of 5`;
+      count.textContent = `${reviews.length} ${reviews.length === 1 ? "review" : "reviews"}`;
+      empty.remove();
+      list.classList.add("testimonial-list--filled");
+      reviews.forEach((review) => {
+        const article = document.createElement("article");
+        article.className = "testimonial";
+        const stars = document.createElement("div");
+        stars.className = "testimonial-stars";
+        stars.setAttribute("aria-label", `${review.rating} out of 5 stars`);
+        stars.textContent = `${"★".repeat(review.rating)}${"☆".repeat(5 - review.rating)}`;
+        const text = document.createElement("p");
+        text.textContent = review.text;
+        const cite = document.createElement("cite");
+        cite.textContent = review.name;
+        article.append(stars, text, cite);
+        list.append(article);
+      });
+    };
+
+    fetch("reviews.json")
+      .then((response) => response.ok ? response.json() : [])
+      .then(renderReviews)
+      .catch((error) => console.error("Unable to load published reviews.", error));
+
     const imageModal = document.querySelector("#image-modal");
     const modalImage = document.querySelector("#image-modal-image");
     const modalCaption = document.querySelector("#image-modal-caption");
