@@ -232,7 +232,7 @@
               return `
                 <article class="meal-card">
                   <a class="meal-card-image gallery-image" href="${imageUrl}" aria-label="View ${meal.title}">
-                    <img src="${imageUrl}" alt="${meal.title}" loading="lazy" decoding="async">
+                    <img src="${imageUrl}" alt="${meal.title}" data-description="${meal.description}" loading="lazy" decoding="async">
                   </a>
                   <div class="meal-card-copy">
                     <h4>${meal.title}</h4>
@@ -317,7 +317,8 @@
 
     const imageModal = document.querySelector("#image-modal");
     const modalImage = document.querySelector("#image-modal-image");
-    const modalCaption = document.querySelector("#image-modal-caption");
+    const modalLabel = document.querySelector("#image-modal-label");
+    const modalDescription = document.querySelector("#image-modal-description");
     const modalPosition = document.querySelector("#image-modal-position");
     const previousButton = document.querySelector("#image-modal-previous");
     const nextButton = document.querySelector("#image-modal-next");
@@ -338,7 +339,9 @@
 
       modalImage.src = image.src;
       modalImage.alt = image.alt;
-      modalCaption.textContent = image.alt;
+      modalLabel.textContent = image.alt;
+      modalDescription.textContent = image.dataset.description || "";
+      modalDescription.hidden = !image.dataset.description;
       modalPosition.textContent = `${activeImageIndex + 1} of ${links.length}`;
       previousButton.disabled = links.length < 2;
       nextButton.disabled = links.length < 2;

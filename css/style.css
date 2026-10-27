@@ -1068,7 +1068,18 @@
       border-radius: 24px;
       background: #fff;
     }
-    .image-modal-caption { margin: 0; color: var(--muted); text-align: center; font-size: .9rem; }
+    .image-modal-caption {
+      margin: 0;
+      color: var(--muted);
+      text-align: center;
+      font-size: .9rem;
+    }
+    .image-modal-caption strong {
+      display: block;
+      color: var(--ink);
+      font-weight: 800;
+    }
+    .image-modal-caption p { margin: 5px 0 0; }
     @media (max-width: 520px) {
       .image-modal-navigation { gap: 6px; }
       .image-modal-nav { min-width: 0; padding: 8px 10px; font-size: .78rem; }
