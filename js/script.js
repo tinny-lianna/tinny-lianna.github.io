@@ -323,9 +323,13 @@
     const nextButton = document.querySelector("#image-modal-next");
     let activeImageIndex = 0;
 
-    const galleryLinks = () => Array.from(galleryCollections.querySelectorAll("a.gallery-image"));
+    let activeGalleryLinks = [];
+    const getGalleryLinks = (link) => {
+      const section = link.closest(".gallery-subcollection, .gallery-collection");
+      return section ? Array.from(section.querySelectorAll("a.gallery-image")) : [];
+    };
     const showImage = (index) => {
-      const links = galleryLinks();
+      const links = activeGalleryLinks;
       if (!links.length) return;
 
       activeImageIndex = (index + links.length) % links.length;
@@ -347,7 +351,8 @@
       if (!link) return;
 
       event.preventDefault();
-      const index = galleryLinks().indexOf(link);
+      activeGalleryLinks = getGalleryLinks(link);
+      const index = activeGalleryLinks.indexOf(link);
       if (index < 0) return;
 
       showImage(index);
