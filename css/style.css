@@ -1060,11 +1060,12 @@
     }
     .image-modal-image {
       display: block;
+      justify-self: center;
       width: 100%;
       min-height: 0;
       max-height: 100%;
       object-fit: contain;
-      border-radius: 12px;
+      border-radius: 24px;
       background: #fff;
     }
     .image-modal-caption { margin: 0; color: var(--muted); text-align: center; font-size: .9rem; }
