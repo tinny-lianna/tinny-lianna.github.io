@@ -1016,6 +1016,28 @@
     .image-modal-content { display: grid; gap: 14px; padding: 18px; }
     .image-modal-header { display: flex; align-items: center; justify-content: space-between; gap: 16px; }
     .image-modal-header h2 { margin: 0; font-size: 1.15rem; letter-spacing: 0; }
+    .image-modal-navigation {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+    }
+    .image-modal-nav {
+      min-width: 108px;
+      padding: 9px 13px;
+      border: 1px solid #e5d7f0;
+      border-radius: 999px;
+      color: var(--purple);
+      background: #fff;
+      font: inherit;
+      font-size: .88rem;
+      font-weight: 800;
+      cursor: pointer;
+    }
+    .image-modal-nav:hover,
+    .image-modal-nav:focus-visible { background: #f7effc; }
+    .image-modal-nav:disabled { opacity: .45; cursor: not-allowed; }
+    .image-modal-position { color: var(--muted); font-size: .85rem; }
     .image-modal-close {
       display: grid;
       flex: 0 0 42px;
@@ -1039,6 +1061,10 @@
       background: #fff;
     }
     .image-modal-caption { margin: 0; color: var(--muted); text-align: center; font-size: .9rem; }
+    @media (max-width: 520px) {
+      .image-modal-navigation { gap: 6px; }
+      .image-modal-nav { min-width: 0; padding: 8px 10px; font-size: .78rem; }
+    }
     .intent-modal { width: min(760px, calc(100% - 32px)); }
     .intent-modal .image-modal-header { align-items: flex-start; }
     .intent-modal-description { max-width: 660px; margin: 5px 0 0; color: var(--muted); font-size: .9rem; }

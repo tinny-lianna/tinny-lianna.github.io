@@ -128,10 +128,7 @@
         kind: "photos",
         images: photoList("facilitiy", [
           "fa1ce9da-61b8-4789-9982-e7e8d90ca88a.JPG",
-          "9291b465-4b5e-4759-b079-a5285ce06835.JPG",
-          "WhatsApp Image 2026-10-27 at 2.46.04 PM.jpeg",
           "WhatsApp Image 2026-10-27 at 2.46.40 PM.jpeg",
-          "92c710d2-5041-4353-8086-d5b1d3677f23.JPG",
           "9915abfe-c6a2-4ee7-8b64-a46b4611d214.JPG",
           "a58123f1-7c54-4ff5-9305-92c651641abf.JPG",
           "bd6f6888-b5a5-4f2e-8882-c81fced771f5.JPG",
@@ -140,7 +137,6 @@
           "f1398835-01d8-48ec-bc38-576872688045.JPG",
           "WhatsApp Image 2026-10-27 at 2.45.03 PM.jpeg",
           "dcb543c9-3fcf-468e-9dc6-cbbb3420d797.JPG",
-          "f51b3d1b-ce4c-4e91-a326-5b9e4b658c07.JPG",
           "d1ed9a27-3a38-4228-8f97-bedc2a4f7374.JPG",
           "WhatsApp Image 2026-10-27 at 2.51.32 PM.jpeg"
         ], [
@@ -322,6 +318,27 @@
     const imageModal = document.querySelector("#image-modal");
     const modalImage = document.querySelector("#image-modal-image");
     const modalCaption = document.querySelector("#image-modal-caption");
+    const modalPosition = document.querySelector("#image-modal-position");
+    const previousButton = document.querySelector("#image-modal-previous");
+    const nextButton = document.querySelector("#image-modal-next");
+    let activeImageIndex = 0;
+
+    const galleryLinks = () => Array.from(galleryCollections.querySelectorAll("a.gallery-image"));
+    const showImage = (index) => {
+      const links = galleryLinks();
+      if (!links.length) return;
+
+      activeImageIndex = (index + links.length) % links.length;
+      const image = links[activeImageIndex].querySelector("img");
+      if (!image) return;
+
+      modalImage.src = image.src;
+      modalImage.alt = image.alt;
+      modalCaption.textContent = image.alt;
+      modalPosition.textContent = `${activeImageIndex + 1} of ${links.length}`;
+      previousButton.disabled = links.length < 2;
+      nextButton.disabled = links.length < 2;
+    };
 
     galleryCollections.addEventListener("click", (event) => {
       const link = event.target instanceof Element
@@ -330,14 +347,15 @@
       if (!link) return;
 
       event.preventDefault();
-      const image = link.querySelector("img");
-      if (!image) return;
+      const index = galleryLinks().indexOf(link);
+      if (index < 0) return;
 
-      modalImage.src = image.src;
-      modalImage.alt = image.alt;
-      modalCaption.textContent = image.alt;
+      showImage(index);
       imageModal.showModal();
     });
+
+    previousButton.addEventListener("click", () => showImage(activeImageIndex - 1));
+    nextButton.addEventListener("click", () => showImage(activeImageIndex + 1));
 
     imageModal.querySelector(".image-modal-close").addEventListener("click", () => {
       imageModal.close();
@@ -354,6 +372,14 @@
 
     document.addEventListener("keydown", (event) => {
       if (event.key === "Escape" && imageModal.open) imageModal.close();
+      if (imageModal.open && event.key === "ArrowLeft") {
+        event.preventDefault();
+        showImage(activeImageIndex - 1);
+      }
+      if (imageModal.open && event.key === "ArrowRight") {
+        event.preventDefault();
+        showImage(activeImageIndex + 1);
+      }
     });
 
     const intentModal = document.querySelector("#intent-modal");
