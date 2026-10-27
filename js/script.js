@@ -278,9 +278,16 @@
       const count = document.querySelector("#review-count");
       const list = document.querySelector(".testimonial-list");
       const empty = document.querySelector("#testimonial-empty");
+      const controls = document.querySelector(".testimonial-controls");
+      const previous = document.querySelector("#testimonial-previous");
+      const next = document.querySelector("#testimonial-next");
+      const dots = document.querySelector("#testimonial-dots");
       if (!average || !count || !list || !empty) return;
 
-      if (!reviews.length) return;
+      if (!reviews.length) {
+        controls.hidden = true;
+        return;
+      }
 
       const total = reviews.reduce((sum, review) => sum + review.rating, 0);
       const rating = (total / reviews.length).toFixed(1);
@@ -288,9 +295,11 @@
       count.textContent = `${reviews.length} ${reviews.length === 1 ? "review" : "reviews"}`;
       empty.remove();
       list.classList.add("testimonial-list--filled");
-      reviews.forEach((review) => {
+      reviews.forEach((review, index) => {
         const article = document.createElement("article");
         article.className = "testimonial";
+        article.setAttribute("role", "tabpanel");
+        article.setAttribute("aria-label", `Approved review ${index + 1} of ${reviews.length}`);
         const cite = document.createElement("cite");
         cite.textContent = review.name;
         const stars = document.createElement("div");
@@ -307,7 +316,42 @@
           article.append(date);
         }
         list.append(article);
+        const dot = document.createElement("button");
+        dot.className = "testimonial-dot";
+        dot.type = "button";
+        dot.setAttribute("role", "tab");
+        dot.setAttribute("aria-label", `Show approved review ${index + 1}`);
+        dot.addEventListener("click", () => showReview(index));
+        dots.append(dot);
       });
+
+      let activeReview = 0;
+      let rotation;
+      const showReview = (index) => {
+        activeReview = (index + reviews.length) % reviews.length;
+        list.querySelectorAll(".testimonial").forEach((item, itemIndex) => {
+          const active = itemIndex === activeReview;
+          item.classList.toggle("is-active", active);
+          item.hidden = !active;
+        });
+        dots.querySelectorAll(".testimonial-dot").forEach((dot, dotIndex) => {
+          const active = dotIndex === activeReview;
+          dot.classList.toggle("is-active", active);
+          dot.setAttribute("aria-selected", String(active));
+        });
+      };
+      const restartRotation = () => {
+        window.clearInterval(rotation);
+        rotation = reviews.length > 1 ? window.setInterval(() => showReview(activeReview + 1), 6000) : undefined;
+      };
+      previous.addEventListener("click", () => { showReview(activeReview - 1); restartRotation(); });
+      next.addEventListener("click", () => { showReview(activeReview + 1); restartRotation(); });
+      list.addEventListener("mouseenter", () => window.clearInterval(rotation));
+      list.addEventListener("mouseleave", restartRotation);
+      list.addEventListener("focusin", () => window.clearInterval(rotation));
+      list.addEventListener("focusout", restartRotation);
+      showReview(0);
+      restartRotation();
     };
 
     fetch("reviews.json?v=e3ff9b0")
