@@ -127,22 +127,27 @@
         title: "Facilities",
         kind: "photos",
         images: photoList("facilitiy", [
-          "282d38c0-6fbf-4a63-8aa8-82088f3ed611.JPG",
-          "2b96ad7a-41dc-4246-924b-535cc907a5e4.JPG",
+          "fa1ce9da-61b8-4789-9982-e7e8d90ca88a.JPG",
           "9291b465-4b5e-4759-b079-a5285ce06835.JPG",
+          "WhatsApp Image 2026-10-27 at 2.46.04 PM.jpeg",
+          "WhatsApp Image 2026-10-27 at 2.46.40 PM.jpeg",
           "92c710d2-5041-4353-8086-d5b1d3677f23.JPG",
           "9915abfe-c6a2-4ee7-8b64-a46b4611d214.JPG",
           "a58123f1-7c54-4ff5-9305-92c651641abf.JPG",
           "bd6f6888-b5a5-4f2e-8882-c81fced771f5.JPG",
-          "d1ed9a27-3a38-4228-8f97-bedc2a4f7374.JPG",
-          "dcb543c9-3fcf-468e-9dc6-cbbb3420d797.JPG",
+          "2b96ad7a-41dc-4246-924b-535cc907a5e4.JPG",
+          "282d38c0-6fbf-4a63-8aa8-82088f3ed611.JPG",
           "f1398835-01d8-48ec-bc38-576872688045.JPG",
+          "WhatsApp Image 2026-10-27 at 2.45.03 PM.jpeg",
+          "dcb543c9-3fcf-468e-9dc6-cbbb3420d797.JPG",
           "f51b3d1b-ce4c-4e91-a326-5b9e4b658c07.JPG",
-          "fa1ce9da-61b8-4789-9982-e7e8d90ca88a.JPG"
+          "d1ed9a27-3a38-4228-8f97-bedc2a4f7374.JPG",
+          "WhatsApp Image 2026-10-27 at 2.51.32 PM.jpeg"
         ], [
-          "Class Room",
-          "Play Area",
+          "Entrance",
           "Passage",
+          "Decorated passage",
+          "Decorated passage",
           "Waiting Area",
           "Class Room",
           "Bed",
@@ -151,7 +156,9 @@
           "Class Room",
           "Class Area",
           "Play Area",
-          "Entrance"
+          "Play Area",
+          "Bed",
+          "Play Area"
         ])
       },
       {
