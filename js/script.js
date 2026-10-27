@@ -310,7 +310,7 @@
       });
     };
 
-    fetch("reviews.json?v=6da025d")
+    fetch("reviews.json?v=e3ff9b0")
       .then((response) => response.ok ? response.json() : [])
       .then(renderReviews)
       .catch((error) => console.error("Unable to load published reviews.", error));
