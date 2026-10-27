@@ -150,14 +150,14 @@
           "Decorated passage",
           "Waiting Area",
           "Class Room",
-          "Bed",
+          "Naptime",
           "Play Area",
           "Play Area",
           "Class Room",
           "Class Area",
           "Play Area",
           "Play Area",
-          "Bed",
+          "Naptime",
           "Play Area"
         ])
       },
