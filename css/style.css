@@ -1114,7 +1114,16 @@
       .image-modal-navigation { gap: 6px; }
       .image-modal-nav { min-width: 0; padding: 8px 10px; font-size: .78rem; }
     }
-    .intent-modal { width: min(760px, calc(100% - 32px)); }
+    .intent-modal {
+      width: min(760px, calc(100% - 32px));
+      overflow: hidden;
+    }
+    .intent-modal .image-modal-content {
+      display: block;
+      height: auto;
+      max-height: min(92vh, 1000px);
+      overflow-y: auto;
+    }
     .intent-modal .image-modal-header { align-items: flex-start; }
     .intent-modal-description { max-width: 660px; margin: 5px 0 0; color: var(--muted); font-size: .9rem; }
     .intent-privacy-notice,
